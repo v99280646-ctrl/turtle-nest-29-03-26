@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import stayImg from "@/assets/stay-resort.jpg";
 
 const StaySection = () => (
   <section className="py-24 relative overflow-hidden">
@@ -12,7 +11,7 @@ const StaySection = () => (
           className="rounded-2xl overflow-hidden glow-border order-2 md:order-1"
         >
           <img
-            src={stayImg}
+            src="/images/8-.jpg"
             alt="Beachfront resort accommodation near dive spots"
             className="w-full h-auto object-cover"
             loading="lazy"

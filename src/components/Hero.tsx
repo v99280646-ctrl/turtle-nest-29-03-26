@@ -10,10 +10,11 @@ const Hero = () => {
         muted
         loop
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
-        poster=""
+        aria-label="Background video of scuba diving"
       >
-        <source src="https://cdn1.simplotel.com/generic_uploads/production/ALD9Mw6n/homepage_video_1.mp4" type="video/mp4" />
+        <source src="/video/hero_video.mp4" type="video/mp4" />
       </video>
 
       {/* Overlay */}
