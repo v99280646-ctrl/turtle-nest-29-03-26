@@ -4,17 +4,15 @@ import { Clock, ArrowRight } from "lucide-react";
 import { courses } from "@/data/courses";
 
 import courseScubaDiver from "@/assets/course-scuba-diver.jpg";
-import courseAdvanced from "@/assets/course-advanced.jpg";
-import courseEfr from "@/assets/course-efr.jpg";
-import courseDivemaster from "@/assets/course-divemaster.jpg";
 
 const imageMap: Record<string, string> = {
   "course-scuba-diver": courseScubaDiver,
   "course-open-water": "/images/3.jpeg",
-  "course-advanced": courseAdvanced,
-  "course-efr": courseEfr,
+  "course-advanced": "/images/adv_open_water.jpeg",
+  "course-efr": "/images/emergency_responder.png",
   "course-rescue": "/images/5.jpg",
-  "course-divemaster": courseDivemaster,
+  "course-divemaster": "/images/divemaster.jpeg",
+  "course-zero-to-hero": "/images/zero-to-hero.jpeg",
 };
 
 const CoursesSection = () => {

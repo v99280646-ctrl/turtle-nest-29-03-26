@@ -77,7 +77,7 @@ const BookingModal = ({ open, onClose, defaultCourse = "", defaultPackage = "" }
     setTimeout(() => {
       setSubmitting(false);
       setSubmitted(true);
-      window.open(`https://wa.me/919876543210?text=${message}`, "_blank", "noopener,noreferrer");
+      window.open(`https://wa.me/917736897964?text=${message}`, "_blank", "noopener,noreferrer");
       setTimeout(() => {
         setSubmitted(false);
         onClose();

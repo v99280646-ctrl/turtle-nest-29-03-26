@@ -26,8 +26,8 @@ const ContactSection = () => (
           className="space-y-6"
         >
           {[
-            { icon: Phone, label: "Phone", value: "+91 98765 43210", href: "tel:+919876543210" },
-            { icon: Mail, label: "Email", value: "info@turtlenestscuba.com", href: "mailto:info@turtlenestscuba.com" },
+            { icon: Phone, label: "Phone", value: "+91 77368 97964", href: "tel:+917736897964" },
+            { icon: Mail, label: "Email", value: "turtlenestscuba@gmail.com", href: "mailto:turtlenestscuba@gmail.com" },
             { icon: MapPin, label: "Location", value: "Lakshadweep, India", href: "#" },
           ].map((item) => (
             <a
@@ -46,7 +46,7 @@ const ContactSection = () => (
           ))}
 
           <a
-            href="https://wa.me/919876543210?text=Hi!%20I%27d%20like%20to%20book%20a%20dive"
+            href="https://wa.me/917736897964?text=Hi!%20I%27d%20like%20to%20book%20a%20dive"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 w-full py-4 rounded-full bg-[hsl(142_70%_45%)] text-[hsl(0_0%_100%)] font-body font-semibold text-lg hover:shadow-[0_0_20px_hsl(142_70%_45%/0.4)] transition-all duration-300"

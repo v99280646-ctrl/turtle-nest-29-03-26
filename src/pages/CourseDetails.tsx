@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Clock, BarChart3, Check, ArrowRight, AlertCircle, BookOpen, ListChecks, Info, Download } from "lucide-react";
+import { ArrowLeft, Clock, BarChart3, Check, ArrowRight, AlertCircle, BookOpen, Info } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Bubbles from "@/components/Bubbles";
@@ -10,29 +10,21 @@ import BookingModal from "@/components/BookingModal";
 import { courses } from "@/data/courses";
 
 import courseScubaDiver from "@/assets/course-scuba-diver.jpg";
-import courseAdvanced from "@/assets/course-advanced.jpg";
-import courseEfr from "@/assets/course-efr.jpg";
-import courseDivemaster from "@/assets/course-divemaster.jpg";
 
 const imageMap: Record<string, string> = {
   "course-scuba-diver": courseScubaDiver,
   "course-open-water": "/images/3.jpeg",
-  "course-advanced": courseAdvanced,
-  "course-efr": courseEfr,
+  "course-advanced": "/images/adv_open_water.jpeg",
+  "course-efr": "/images/emergency_responder.png",
   "course-rescue": "/images/5.jpg",
-  "course-divemaster": courseDivemaster,
+  "course-divemaster": "/images/divemaster.jpeg",
+  "course-zero-to-hero": "/images/zero-to-hero.jpeg",
 };
 
-const prerequisiteDocuments = [
-  {
-    label: "Document1",
-    href: "/doc/10072ReleaseofLiability_AssumptionofRisk_Non-agencyAcknowledgmentForm%E2%80%93GeneralTraining2.pdf",
-  },
-  {
-    label: "Document2",
-    href: "/doc/10346DiverMedicalFormcopy.pdf",
-  },
-];
+const medicalStatementText = "PADI Medical Statement must be completed";
+const medicalStatementHref = "/doc/10346DiverMedicalFormcopy.pdf";
+const physicianClearanceText = "Physician clearance if any medical conditions";
+const physicianClearanceHref = "/doc/10072ReleaseofLiability_AssumptionofRisk_Non-agencyAcknowledgmentForm%E2%80%93GeneralTraining2.pdf";
 
 const CourseDetails = () => {
   const { courseId } = useParams();
@@ -184,14 +176,31 @@ const CourseDetails = () => {
                   <h3 className="font-heading text-lg md:text-xl font-bold mb-1">{pkg.name}</h3>
                   <div className="font-heading text-2xl md:text-3xl font-bold gradient-text mb-4">{pkg.price}</div>
                   <ul className="space-y-2 flex-1">
-                    {pkg.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2 font-body text-foreground/70 text-xs md:text-sm">
-                        <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="text-primary" size={10} />
-                        </div>
-                        {feature}
-                      </li>
-                    ))}
+                    {pkg.features.map((feature, featureIndex) => {
+                      const isSectionTitle = feature === "Includes" || feature === "Excludes";
+
+                      if (isSectionTitle) {
+                        return (
+                          <li
+                            key={`${pkg.name}-${feature}`}
+                            className={`font-heading text-sm md:text-base font-bold uppercase tracking-[0.16em] text-primary ${
+                              featureIndex > 0 ? "pt-3" : ""
+                            }`}
+                          >
+                            {feature}
+                          </li>
+                        );
+                      }
+
+                      return (
+                        <li key={`${pkg.name}-${feature}`} className="flex items-start gap-2 font-body text-foreground/70 text-xs md:text-sm">
+                          <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Check className="text-primary" size={10} />
+                          </div>
+                          {feature}
+                        </li>
+                      );
+                    })}
                   </ul>
                   <button
                     onClick={() => openBooking(pkg.name)}
@@ -211,8 +220,8 @@ const CourseDetails = () => {
             )}
           </div>
 
-          {/* Prerequisites & What's Included */}
-          <div className="mt-16 grid gap-4 px-4 sm:grid-cols-2 md:mt-20 md:gap-8 md:px-0">
+          {/* Prerequisites */}
+          <div className="mt-16 px-4 md:mt-20 md:px-0">
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="glass-card p-5 md:p-8 rounded-xl">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-7 h-7 rounded-lg bg-accent/20 flex items-center justify-center">
@@ -226,40 +235,35 @@ const CourseDetails = () => {
                     <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check className="text-accent" size={12} />
                     </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                {prerequisiteDocuments.map((document) => (
-                  <a
-                    key={document.label}
-                    href={document.href}
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-accent/40 px-4 py-3 font-body text-sm font-semibold text-foreground transition-all duration-300 hover:bg-accent/10"
-                  >
-                    <Download size={16} />
-                    {document.label}
-                  </a>
-                ))}
-              </div>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="glass-card p-5 md:p-8 rounded-xl">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center">
-                  <ListChecks className="text-primary" size={14} />
-                </div>
-                <h2 className="font-heading text-lg md:text-2xl font-bold">What's Included</h2>
-              </div>
-              <ul className="space-y-2">
-                {course.includes.map((item) => (
-                  <li key={item} className="flex items-start gap-2 font-body text-foreground/70 text-xs md:text-sm">
-                    <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="text-primary" size={12} />
-                    </div>
-                    {item}
+                    {item === medicalStatementText ? (
+                      <span>
+                        {medicalStatementText}-
+                        <a
+                          href={medicalStatementHref}
+                          download
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-primary underline underline-offset-2"
+                        >
+                          Download
+                        </a>
+                      </span>
+                    ) : item === physicianClearanceText ? (
+                      <span>
+                        {physicianClearanceText}-
+                        <a
+                          href={physicianClearanceHref}
+                          download
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-primary underline underline-offset-2"
+                        >
+                          Download
+                        </a>
+                      </span>
+                    ) : (
+                      item
+                    )}
                   </li>
                 ))}
               </ul>

@@ -39,7 +39,7 @@ const experiencePrograms = [
     structure: [
       "Briefing: Learn basic dive theory, safety guidelines, equipment usage, equalizing pressure, and underwater communication. This can also be completed online via PADI eLearning.",
       "Confined Water Dive: Practice breathing underwater, regulator clearing, mask clearing, and basic buoyancy control under close supervision.",
-      "Optional Open Water Dive: After the confined water dive, you may join a supervised open water dive up to 12 meters (40 feet), depending on the program.",
+      "Optional Open Water Dive: After the confined water dive, you may join a supervised open water dive up to 12 meters (40 feet), depending on the sea conditions.",
     ],
     packageName: "Standard package",
     price: "INR 6,500",
