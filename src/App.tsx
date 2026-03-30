@@ -5,8 +5,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import Index from "./pages/Index.tsx";
+import BlogDetailsPage from "./pages/BlogDetailsPage.tsx";
 import CoursesPage from "./pages/CoursesPage.tsx";
 import CourseDetails from "./pages/CourseDetails.tsx";
+import BlogsPage from "./pages/BlogsPage.tsx";
 import DiveTripsPage from "./pages/DiveTripsPage.tsx";
 import ExperienceProgramsPage from "./pages/ExperienceProgramsPage.tsx";
 import FunDivesPage from "./pages/FunDivesPage.tsx";
@@ -25,6 +27,8 @@ const App = () => (
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/blogs/:slug" element={<BlogDetailsPage />} />
           <Route path="/courses" element={<CoursesPage />} />
           <Route path="/fun-dives" element={<FunDivesPage />} />
           <Route path="/dive-trips" element={<DiveTripsPage />} />
