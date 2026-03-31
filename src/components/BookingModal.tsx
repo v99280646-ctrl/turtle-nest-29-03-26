@@ -65,24 +65,65 @@ const BookingModal = ({ open, onClose, defaultCourse = "", defaultPackage = "" }
   const currentCourse = courses.find((c) => c.id === selectedCourse);
   const packageOptions = currentCourse?.packages || [];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const websiteTemplateContactUsApi = async (data: {
+    name: string;
+    contact: string;
+    countryCode: string;
+    email: string;
+    subdomain: string;
+    messageContent: string;
+    messageType: string;
+  }) => {
+    const response = await fetch(
+      // "http://localhost:4000/business_website/chat_widget/template_contact_us",
+      "https://backbin.colaber.in/business_website/chat_widget/template_contact_us",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to submit booking form");
+    }
+
+    return response.json();
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 
     const whatsappFull = `${whatsappCode}${whatsappNumber}`.replace(/[^+\d]/g, "");
-    const message = encodeURIComponent(
-      `Hi! I'd like to book.\n\nSelection: ${currentCourse?.title || selectedBookingOption?.title || selectedCourse}\nPackage: ${selectedPackage || "N/A"}\nName: ${fullName}\nEmail: ${email}\nLocation: ${city}, ${state}, ${country}\nWhatsApp: ${whatsappFull}${altNumber ? `\nAlt Contact: ${altCode}${altNumber}` : ""}`
-    );
+    const messageData = `Hi! I'd like to book.\n\nSelection: ${currentCourse?.title || selectedBookingOption?.title || selectedCourse}\nPackage: ${selectedPackage || "N/A"}\nName: ${fullName}\nEmail: ${email}\nLocation: ${city}, ${state}, ${country}\nWhatsApp: ${whatsappFull}${altNumber ? `\nAlt Contact: ${altCode}${altNumber}` : ""}`
+    const message = encodeURIComponent(messageData);
 
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      await websiteTemplateContactUsApi({
+        name: fullName,
+        contact: whatsappNumber,
+        countryCode: whatsappCode,
+        email,
+        subdomain: window.location.hostname,
+        messageContent : messageData,
+        messageType: "text",
+      });
+
       setSubmitted(true);
       window.open(`https://wa.me/917736897964?text=${message}`, "_blank", "noopener,noreferrer");
       setTimeout(() => {
         setSubmitted(false);
         onClose();
       }, 2000);
-    }, 800);
+    } catch (error) {
+      console.error("Booking submission failed:", error);
+      alert("Unable to submit booking right now. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   // Reset form when modal opens with new defaults
