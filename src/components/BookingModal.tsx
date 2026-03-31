@@ -65,24 +65,65 @@ const BookingModal = ({ open, onClose, defaultCourse = "", defaultPackage = "" }
   const currentCourse = courses.find((c) => c.id === selectedCourse);
   const packageOptions = currentCourse?.packages || [];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const websiteTemplateContactUsApi = async (data: {
+    name: string;
+    contact: string;
+    countryCode: string;
+    email: string;
+    subdomain: string;
+    messageContent: string;
+    messageType: string;
+  }) => {
+    const response = await fetch(
+      // "http://localhost:4000/business_website/chat_widget/template_contact_us",
+      "https://backbin.colaber.in/business_website/chat_widget/template_contact_us",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to submit booking form");
+    }
+
+    return response.json();
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 
     const whatsappFull = `${whatsappCode}${whatsappNumber}`.replace(/[^+\d]/g, "");
-    const message = encodeURIComponent(
-      `Hi! I'd like to book.\n\nSelection: ${currentCourse?.title || selectedBookingOption?.title || selectedCourse}\nPackage: ${selectedPackage || "N/A"}\nName: ${fullName}\nEmail: ${email}\nLocation: ${city}, ${state}, ${country}\nWhatsApp: ${whatsappFull}${altNumber ? `\nAlt Contact: ${altCode}${altNumber}` : ""}`
-    );
+    const messageData = `Hi! I'd like to book.\n\nSelection: ${currentCourse?.title || selectedBookingOption?.title || "N/A"}\nPackage: ${selectedPackage || "N/A"}\nName: ${fullName}\nEmail: ${email || "N/A"}\nLocation: ${[city, state, country].filter(Boolean).join(", ") || "N/A"}\nWhatsApp: ${whatsappFull}${altNumber ? `\nAlt Contact: ${altCode}${altNumber}` : ""}`
+    const message = encodeURIComponent(messageData);
 
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      await websiteTemplateContactUsApi({
+        name: fullName,
+        contact: whatsappNumber,
+        countryCode: whatsappCode,
+        email,
+        subdomain: window.location.hostname,
+        messageContent : messageData,
+        messageType: "text",
+      });
+
       setSubmitted(true);
       window.open(`https://wa.me/917736897964?text=${message}`, "_blank", "noopener,noreferrer");
       setTimeout(() => {
         setSubmitted(false);
         onClose();
       }, 2000);
-    }, 800);
+    } catch (error) {
+      console.error("Booking submission failed:", error);
+      alert("Unable to submit booking right now. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   // Reset form when modal opens with new defaults
@@ -136,12 +177,11 @@ const BookingModal = ({ open, onClose, defaultCourse = "", defaultPackage = "" }
               <form onSubmit={handleSubmit} className="p-5 space-y-4">
                 {/* Selection */}
                 <div>
-                  <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">Program / Trip / Course *</label>
+                  <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">Program / Trip / Course (Optional)</label>
                   <div className="relative">
                     <select
                       value={selectedCourse}
                       onChange={(e) => { setSelectedCourse(e.target.value); setSelectedPackage(""); }}
-                      required
                       className="w-full h-11 rounded-xl bg-muted/50 border border-border/50 px-3 pr-8 font-body text-sm text-foreground appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50"
                     >
                       <option value="">Select</option>
@@ -156,12 +196,11 @@ const BookingModal = ({ open, onClose, defaultCourse = "", defaultPackage = "" }
                 {/* Package */}
                 {packageOptions.length > 0 && (
                   <div>
-                    <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">Package *</label>
+                    <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">Package (Optional)</label>
                     <div className="relative">
                       <select
                         value={selectedPackage}
                         onChange={(e) => setSelectedPackage(e.target.value)}
-                        required
                         className="w-full h-11 rounded-xl bg-muted/50 border border-border/50 px-3 pr-8 font-body text-sm text-foreground appearance-none focus:outline-none focus:ring-2 focus:ring-primary/50"
                       >
                         <option value="">Select a package</option>
@@ -218,12 +257,11 @@ const BookingModal = ({ open, onClose, defaultCourse = "", defaultPackage = "" }
 
                 {/* Email */}
                 <div>
-                  <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">Email *</label>
+                  <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">Email</label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
                     maxLength={255}
                     placeholder="your@email.com"
                     className="w-full h-11 rounded-xl bg-muted/50 border border-border/50 px-3 font-body text-sm text-foreground placeholder:text-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary/50"
@@ -233,36 +271,33 @@ const BookingModal = ({ open, onClose, defaultCourse = "", defaultPackage = "" }
                 {/* Country / State / City */}
                 <div className="grid grid-cols-3 gap-2">
                   <div>
-                    <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">Country *</label>
+                    <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">Country (Optional)</label>
                     <input
                       type="text"
                       value={country}
                       onChange={(e) => setCountry(e.target.value)}
-                      required
                       maxLength={60}
                       placeholder="Country"
                       className="w-full h-11 rounded-xl bg-muted/50 border border-border/50 px-3 font-body text-sm text-foreground placeholder:text-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary/50"
                     />
                   </div>
                   <div>
-                    <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">State *</label>
+                    <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">State (Optional)</label>
                     <input
                       type="text"
                       value={state}
                       onChange={(e) => setState(e.target.value)}
-                      required
                       maxLength={60}
                       placeholder="State"
                       className="w-full h-11 rounded-xl bg-muted/50 border border-border/50 px-3 font-body text-sm text-foreground placeholder:text-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary/50"
                     />
                   </div>
                   <div>
-                    <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">City *</label>
+                    <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">City (Optional)</label>
                     <input
                       type="text"
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
-                      required
                       maxLength={60}
                       placeholder="City"
                       className="w-full h-11 rounded-xl bg-muted/50 border border-border/50 px-3 font-body text-sm text-foreground placeholder:text-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary/50"

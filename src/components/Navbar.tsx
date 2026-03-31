@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/turtle_nest_logo.png";
+import BookingModal from "@/components/BookingModal";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -13,9 +14,22 @@ const navLinks = [
   { to: "/#contact", label: "Contact" },
 ];
 
-const Navbar = () => {
+interface NavbarProps {
+  onBookNow?: () => void;
+}
+
+const Navbar = ({ onBookNow }: NavbarProps) => {
   const [open, setOpen] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
   const location = useLocation();
+
+  const handleBookNow = () => {
+    if (onBookNow) {
+      onBookNow();
+      return;
+    }
+    setBookingOpen(true);
+  };
 
   const handleNavClick = (to: string) => {
     setOpen(false);
@@ -46,13 +60,13 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link
-            to="/#pricing"
-            onClick={() => handleNavClick("/#pricing")}
+          <button
+            type="button"
+            onClick={handleBookNow}
             className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground font-body font-semibold text-sm tracking-wide hover:shadow-[0_0_20px_hsl(187_80%_48%/0.4)] transition-all duration-300"
           >
             Book Now
-          </Link>
+          </button>
         </div>
 
         {/* Mobile toggle */}
@@ -81,17 +95,23 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                to="/#pricing"
-                onClick={() => handleNavClick("/#pricing")}
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  handleBookNow();
+                }}
                 className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground font-body font-semibold text-sm text-center"
               >
                 Book Now
-              </Link>
+              </button>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+      {!onBookNow && (
+        <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
+      )}
     </nav>
   );
 };
