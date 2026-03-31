@@ -259,12 +259,11 @@ const BookingModal = ({ open, onClose, defaultCourse = "", defaultPackage = "" }
 
                 {/* Email */}
                 <div>
-                  <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">Email *</label>
+                  <label className="font-body text-xs font-medium text-foreground/60 mb-1.5 block">Email</label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    required
                     maxLength={255}
                     placeholder="your@email.com"
                     className="w-full h-11 rounded-xl bg-muted/50 border border-border/50 px-3 font-body text-sm text-foreground placeholder:text-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary/50"
