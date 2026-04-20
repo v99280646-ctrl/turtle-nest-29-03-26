@@ -169,7 +169,7 @@ export const courses: Course[] = [
     ],
     prerequisites: [
       "Minimum age: 10 years (Junior OWD), 15 years (full certification)",
-      "Swim 200m (or 300m with mask, fins & snorkel)",
+      "Swim 200m or 300m with mask, fins & snorkel",
       "Tread water for 10 minutes",
       "PADI Medical Statement must be completed",
       "PADI Liability Release Form must be signed",

@@ -25,6 +25,7 @@ const medicalStatementText = "PADI Medical Statement must be completed";
 const medicalStatementHref = "/doc/10346DiverMedicalFormcopy.pdf";
 const physicianClearanceText = "Physician clearance if any medical conditions";
 const physicianClearanceHref = "/doc/10072ReleaseofLiability_AssumptionofRisk_Non-agencyAcknowledgmentForm%E2%80%93GeneralTraining2.pdf";
+const liabilityStatementText = "PADI Liability Release Form must be signed";
 
 const CourseDetails = () => {
   const { courseId } = useParams();
@@ -251,6 +252,19 @@ const CourseDetails = () => {
                     ) : item === physicianClearanceText ? (
                       <span>
                         {physicianClearanceText}-
+                        <a
+                          href={physicianClearanceHref}
+                          download
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-primary underline underline-offset-2"
+                        >
+                          Download
+                        </a>
+                      </span>
+                    ) : item === liabilityStatementText ? (
+                      <span>
+                        {item}-
                         <a
                           href={physicianClearanceHref}
                           download
