@@ -101,7 +101,7 @@ const includes = [
   "Lakshadweep entry permit",
   "Airport pick-up and drop",
   "Beachside resort accommodation",
-  "Daily breakfast, lunch and refreshments",
+  "Complimentary Breakfast, Lunch & Refreshments",
   "Boat transfers for all dive trips",
   "Complete scuba diving equipment",
   "Local sightseeing experiences",
