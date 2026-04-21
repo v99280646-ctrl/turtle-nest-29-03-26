@@ -111,7 +111,7 @@ export const courses: Course[] = [
       "Minimum age: 10 years (Junior Scuba Diver), 15 years (full certification)",
       "Basic swimming ability required",
       "PADI Medical Statement must be completed",
-      "Physician clearance if any medical conditions",
+      // "Physician clearance if any medical conditions",
       "PADI Liability Release Form must be signed",
     ],
     courseStructure: [
