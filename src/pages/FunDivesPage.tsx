@@ -17,7 +17,7 @@ const divePackages = [
   { title: "6 days / 12 dives", price: "INR 48,000 per person" },
 ];
 
-const includes = ["Equipment rental", "Boat rental"];
+const includes = ["Equipment rental", "Boat rental", "PADI Professionals assist", "⁠Refreshments"];
 
 const excludes = [
   "Lakshadweep permit",
