@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, FileBadge, Shield, Waves } from "lucide-react";
+import { AlertTriangle, Check, FileBadge, Shield, Waves } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Bubbles from "@/components/Bubbles";
@@ -43,7 +43,11 @@ const experiencePrograms = [
     ],
     packageName: "Standard package",
     price: "INR 6,500",
-    includes: ["30 mins of boat dive", "Underwater videos and photos included", "PADI experience program certification"],
+    includes: [
+      "30 mins of boat dive",
+      "Underwater videos and photos included",
+      "PADI experience program certification",
+    ],
   },
 ];
 
@@ -57,12 +61,17 @@ const ExperienceProgramsPage = () => {
       <Navbar />
       <main className="pt-24 pb-20 md:pb-16">
         <div className="container mx-auto px-4">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-10 md:mb-16"
+          >
             <h1 className="font-heading text-3xl md:text-6xl font-bold mb-3">
               Experience <span className="gradient-text">Programs</span>
             </h1>
             <p className="font-body text-foreground/60 text-sm md:text-lg max-w-3xl mx-auto">
-              Start with guided introductory dives and confidence-building programs designed for first-time underwater explorers.
+              Start with guided introductory dives and confidence-building
+              programs designed for first-time underwater explorers.
             </p>
           </motion.div>
 
@@ -94,8 +103,12 @@ const ExperienceProgramsPage = () => {
 
                   <div className="p-5 md:p-8">
                     <div className="mb-5">
-                      <h2 className="font-heading text-2xl md:text-4xl font-bold mb-2">{program.title}</h2>
-                      <p className="font-body text-foreground/60 text-sm md:text-base">{program.subtitle}</p>
+                      <h2 className="font-heading text-2xl md:text-4xl font-bold mb-2">
+                        {program.title}
+                      </h2>
+                      <p className="font-body text-foreground/60 text-sm md:text-base">
+                        {program.subtitle}
+                      </p>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-3 mb-5 text-sm font-body text-foreground/60">
@@ -114,14 +127,21 @@ const ExperienceProgramsPage = () => {
                       )}
                     </div>
 
-                    <p className="font-body text-foreground/70 text-sm md:text-base leading-relaxed mb-6">{program.overview}</p>
+                    <p className="font-body text-foreground/70 text-sm md:text-base leading-relaxed mb-6">
+                      {program.overview}
+                    </p>
 
                     {program.prerequisites && (
                       <div className="mb-6">
-                        <h3 className="font-heading text-lg md:text-xl font-bold mb-3">Prerequisites</h3>
+                        <h3 className="font-heading text-lg md:text-xl font-bold mb-3">
+                          Prerequisites
+                        </h3>
                         <ul className="grid gap-2">
                           {program.prerequisites.map((item) => (
-                            <li key={item} className="flex items-start gap-2 font-body text-foreground/70 text-sm">
+                            <li
+                              key={item}
+                              className="flex items-start gap-2 font-body text-foreground/70 text-sm"
+                            >
                               <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent/20">
                                 <Shield size={12} className="text-accent" />
                               </div>
@@ -134,10 +154,15 @@ const ExperienceProgramsPage = () => {
 
                     {program.structure && (
                       <div className="mb-6">
-                        <h3 className="font-heading text-lg md:text-xl font-bold mb-3">Program Structure</h3>
+                        <h3 className="font-heading text-lg md:text-xl font-bold mb-3">
+                          Program Structure
+                        </h3>
                         <ul className="grid gap-3">
                           {program.structure.map((item, index) => (
-                            <li key={item} className="flex items-start gap-3 font-body text-foreground/70 text-sm">
+                            <li
+                              key={item}
+                              className="flex items-start gap-3 font-body text-foreground/70 text-sm"
+                            >
                               <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/20 font-heading text-xs font-bold text-primary">
                                 {index + 1}
                               </div>
@@ -149,11 +174,19 @@ const ExperienceProgramsPage = () => {
                     )}
 
                     <div>
-                      <h3 className="font-heading text-lg md:text-xl font-bold mb-3">Includes</h3>
+                      <h3 className="font-heading text-lg md:text-xl font-bold mb-3">
+                        Includes
+                      </h3>
                       <div className="grid gap-2 sm:grid-cols-2">
                         {program.includes.map((item) => (
-                          <div key={item} className="flex items-start gap-2 rounded-xl border border-primary/15 bg-background/30 px-3 py-3 font-body text-sm text-foreground/75">
-                            <Check size={16} className="mt-0.5 flex-shrink-0 text-primary" />
+                          <div
+                            key={item}
+                            className="flex items-start gap-2 rounded-xl border border-primary/15 bg-background/30 px-3 py-3 font-body text-sm text-foreground/75"
+                          >
+                            <Check
+                              size={16}
+                              className="mt-0.5 flex-shrink-0 text-primary"
+                            />
                             <span>{item}</span>
                           </div>
                         ))}
@@ -177,6 +210,30 @@ const ExperienceProgramsPage = () => {
               </motion.article>
             ))}
           </div>
+
+          <motion.section
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            id="permit-note"
+            className="my-8 rounded-2xl border border-accent/25 bg-accent/10 p-5 md:p-6"
+          >
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-accent/20">
+                <AlertTriangle className="text-accent" size={18} />
+              </div>
+              <div>
+                <h2 className="font-heading text-xl md:text-2xl font-bold mb-2">
+                  Mandatory Permit Note
+                </h2>
+                <p className="font-body text-sm md:text-base text-foreground/75 leading-relaxed">
+                  PCC (Police Clearance Certificate) is mandatory for
+                  Lakshadweep entry permit application. It must be taken online
+                  from your respective state police official website, and permit
+                  processing takes 7-10 working days.
+                </p>
+              </div>
+            </div>
+          </motion.section>
         </div>
       </main>
       <Footer />

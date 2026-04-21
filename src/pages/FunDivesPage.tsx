@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, CircleX, Clock, ShipWheel, Waves } from "lucide-react";
+import {
+  AlertTriangle,
+  Check,
+  CircleX,
+  Clock,
+  ShipWheel,
+  Waves,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Bubbles from "@/components/Bubbles";
@@ -17,7 +24,12 @@ const divePackages = [
   { title: "6 days / 12 dives", price: "INR 48,000 per person" },
 ];
 
-const includes = ["Equipment rental", "Boat rental", "PADI Professionals assist", "⁠Refreshments"];
+const includes = [
+  "Equipment rental",
+  "Boat rental",
+  "PADI Professionals assist",
+  "⁠Refreshments",
+];
 
 const excludes = [
   "Lakshadweep permit",
@@ -37,12 +49,18 @@ const FunDivesPage = () => {
       <Navbar />
       <main className="pt-24 pb-20 md:pb-16">
         <div className="container mx-auto px-4">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-10 md:mb-16"
+          >
             <h1 className="font-heading text-3xl md:text-6xl font-bold mb-3">
               FUN <span className="gradient-text">DIVES</span>
             </h1>
             <p className="font-body text-foreground/60 text-sm md:text-lg max-w-3xl mx-auto">
-              Discover the vibrant reefs of Lakshadweep with guided fun dives for certified divers, planned around your comfort and experience level.
+              Discover the vibrant reefs of Lakshadweep with guided fun dives
+              for certified divers, planned around your comfort and experience
+              level.
             </p>
           </motion.div>
 
@@ -53,22 +71,33 @@ const FunDivesPage = () => {
               className="glass-card overflow-hidden rounded-2xl"
             >
               <div className="relative h-72 md:h-96">
-                <img src={funDiving} alt="Fun dives in Lakshadweep" className="h-full w-full object-cover" />
+                <img
+                  src={funDiving}
+                  alt="Fun dives in Lakshadweep"
+                  className="h-full w-full object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent" />
                 <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-background/85 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-primary backdrop-blur-sm">
                   <Waves size={14} />
                   Certified Divers
                 </div>
                 <div className="absolute bottom-5 left-5 right-5">
-                  <h2 className="font-heading text-2xl md:text-4xl font-bold mb-2">Reefs, turtles, coral gardens, and exclusive dive sites</h2>
+                  <h2 className="font-heading text-2xl md:text-4xl font-bold mb-2">
+                    Reefs, turtles, coral gardens, and exclusive dive sites
+                  </h2>
                   <p className="font-body text-sm md:text-base text-foreground/75 max-w-xl">
-                    Explore Lakshadweep with experienced local professionals on safe, smooth, and unforgettable underwater adventures.
+                    Explore Lakshadweep with experienced local professionals on
+                    safe, smooth, and unforgettable underwater adventures.
                   </p>
                 </div>
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} className="glass-card rounded-2xl p-5 md:p-8">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="glass-card rounded-2xl p-5 md:p-8"
+            >
               <div className="flex flex-wrap gap-3 mb-5">
                 <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 text-sm font-body text-foreground/70">
                   <ShipWheel size={15} className="text-primary" />
@@ -81,21 +110,36 @@ const FunDivesPage = () => {
               </div>
 
               <p className="font-body text-foreground/70 text-sm md:text-base leading-relaxed mb-6">
-                Every dive is planned around your comfort and experience level, ensuring a safe, smooth, and unforgettable underwater adventure with our local team.
+                Every dive is planned around your comfort and experience level,
+                ensuring a safe, smooth, and unforgettable underwater adventure
+                with our local team.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {divePackages.map((pkg) => (
-                  <div key={pkg.title} className="rounded-xl border border-primary/15 bg-background/30 p-4">
-                    <p className="font-heading text-lg font-bold">{pkg.title}</p>
-                    <p className="font-body text-primary font-semibold text-sm mt-1">{pkg.price}</p>
+                  <div
+                    key={pkg.title}
+                    className="rounded-xl border border-primary/15 bg-background/30 p-4"
+                  >
+                    <p className="font-heading text-lg font-bold">
+                      {pkg.title}
+                    </p>
+                    <p className="font-body text-primary font-semibold text-sm mt-1">
+                      {pkg.price}
+                    </p>
                   </div>
                 ))}
               </div>
 
               <div className="mt-5 rounded-xl border border-accent/20 bg-accent/10 p-4">
-                <p className="font-body text-sm text-foreground/75">Extra dives are chargeable at <span className="font-semibold text-accent">INR 3,500</span>.</p>
-                <p className="font-body text-sm text-foreground/75 mt-2">Night dive price: <span className="font-semibold text-accent">INR 3,500</span>.</p>
+                <p className="font-body text-sm text-foreground/75">
+                  Extra dives are chargeable at{" "}
+                  <span className="font-semibold text-accent">INR 3,500</span>.
+                </p>
+                <p className="font-body text-sm text-foreground/75 mt-2">
+                  Night dive price:{" "}
+                  <span className="font-semibold text-accent">INR 3,500</span>.
+                </p>
               </div>
 
               <button
@@ -118,7 +162,10 @@ const FunDivesPage = () => {
               <h3 className="font-heading text-2xl font-bold mb-4">Includes</h3>
               <ul className="grid gap-3">
                 {includes.map((item) => (
-                  <li key={item} className="flex items-start gap-3 font-body text-sm text-foreground/75">
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 font-body text-sm text-foreground/75"
+                  >
                     <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/20">
                       <Check size={14} className="text-primary" />
                     </div>
@@ -137,7 +184,10 @@ const FunDivesPage = () => {
               <h3 className="font-heading text-2xl font-bold mb-4">Excludes</h3>
               <ul className="grid gap-3">
                 {excludes.map((item) => (
-                  <li key={item} className="flex items-start gap-3 font-body text-sm text-foreground/75">
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 font-body text-sm text-foreground/75"
+                  >
                     <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent/20">
                       <CircleX size={14} className="text-accent" />
                     </div>
@@ -147,11 +197,39 @@ const FunDivesPage = () => {
               </ul>
             </motion.section>
           </div>
+
+          <motion.section
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            id="permit-note"
+            className="mt-8 rounded-2xl border border-accent/25 bg-accent/10 p-5 md:p-6"
+          >
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-accent/20">
+                <AlertTriangle className="text-accent" size={18} />
+              </div>
+              <div>
+                <h2 className="font-heading text-xl md:text-2xl font-bold mb-2">
+                  Mandatory Permit Note
+                </h2>
+                <p className="font-body text-sm md:text-base text-foreground/75 leading-relaxed">
+                  PCC (Police Clearance Certificate) is mandatory for
+                  Lakshadweep entry permit application. It must be taken online
+                  from your respective state police official website, and permit
+                  processing takes 7-10 working days.
+                </p>
+              </div>
+            </div>
+          </motion.section>
         </div>
       </main>
       <Footer />
       <MobileBottomNav />
-      <BookingModal open={modalOpen} onClose={() => setModalOpen(false)} defaultCourse="fun-dives" />
+      <BookingModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        defaultCourse="fun-dives"
+      />
     </div>
   );
 };
