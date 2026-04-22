@@ -34,7 +34,7 @@ const Footer = () => (
       </div>
 
       <div className="border-t border-border/20 pt-6">
-        <div className="font-body text-foreground/40 text-sm mb-4 leading-relaxed">
+        {/* <div className="font-body text-foreground/40 text-sm mb-4 leading-relaxed">
           <h3 className="font-heading text-foreground/50 font-semibold mb-2">Best Scuba Diving in Lakshadweep</h3>
           <p>
             Turtle Nest Scuba is your premier PADI-certified dive center in Lakshadweep.
@@ -42,7 +42,7 @@ const Footer = () => (
             experiences, and guided fun dives. Experience the best scuba diving in India with crystal-clear
             waters, vibrant coral reefs, and expert instructors. Book your scuba diving adventure today.
           </p>
-        </div>
+        </div> */}
         <p className="font-body text-foreground/30 text-sm text-center">
           © {new Date().getFullYear()} Turtle Nest Scuba. All rights reserved.
         </p>

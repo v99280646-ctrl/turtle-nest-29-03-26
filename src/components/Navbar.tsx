@@ -7,10 +7,10 @@ import BookingModal from "@/components/BookingModal";
 
 const navLinks = [
   { to: "/", label: "Home" },
+  { to: "/experience-programs", label: "Experience Programs" },
   { to: "/courses", label: "Courses" },
   { to: "/fun-dives", label: "Fun Dives" },
   { to: "/dive-trips", label: "Dive Trips" },
-  { to: "/experience-programs", label: "Experience Programs" },
   { to: "/#contact", label: "Contact" },
 ];
 

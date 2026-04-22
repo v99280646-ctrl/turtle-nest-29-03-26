@@ -1,7 +1,17 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Clock, BarChart3, Check, ArrowRight, AlertCircle, BookOpen, Info } from "lucide-react";
+import {
+  ArrowLeft,
+  Clock,
+  BarChart3,
+  Check,
+  ArrowRight,
+  AlertCircle,
+  BookOpen,
+  Info,
+  AlertTriangle,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Bubbles from "@/components/Bubbles";
@@ -18,13 +28,15 @@ const imageMap: Record<string, string> = {
   "course-efr": "/images/emergency_responder.png",
   "course-rescue": "/images/5.jpg",
   "course-divemaster": "/images/divemaster.jpeg",
-  "course-zero-to-hero": "/images/zero-to-hero.jpeg",
+  "course-zero-to-hero": "/images/zero-to-hero.jpg",
 };
 
 const medicalStatementText = "PADI Medical Statement must be completed";
 const medicalStatementHref = "/doc/10346DiverMedicalFormcopy.pdf";
 const physicianClearanceText = "Physician clearance if any medical conditions";
-const physicianClearanceHref = "/doc/10072ReleaseofLiability_AssumptionofRisk_Non-agencyAcknowledgmentForm%E2%80%93GeneralTraining2.pdf";
+const physicianClearanceHref =
+  "/doc/10072ReleaseofLiability_AssumptionofRisk_Non-agencyAcknowledgmentForm%E2%80%93GeneralTraining2.pdf";
+const liabilityStatementText = "PADI Liability Release Form must be signed";
 
 const CourseDetails = () => {
   const { courseId } = useParams();
@@ -44,8 +56,12 @@ const CourseDetails = () => {
           <Navbar />
         </div>
         <div className="text-center pt-24">
-          <h1 className="font-heading text-3xl font-bold mb-4">Course Not Found</h1>
-          <Link to="/courses" className="text-primary font-body">← Back to Courses</Link>
+          <h1 className="font-heading text-3xl font-bold mb-4">
+            Course Not Found
+          </h1>
+          <Link to="/courses" className="text-primary font-body">
+            ← Back to Courses
+          </Link>
         </div>
       </div>
     );
@@ -61,13 +77,19 @@ const CourseDetails = () => {
       </div>
       <main className="pb-20 pt-0 md:pb-16 md:pt-24">
         <div className="md:container md:mx-auto md:px-4">
-          <Link to="/courses" className="mb-6 hidden items-center gap-2 text-primary font-body text-sm transition-all hover:gap-3 md:inline-flex">
+          <Link
+            to="/courses"
+            className="mb-6 hidden items-center gap-2 text-primary font-body text-sm transition-all hover:gap-3 md:inline-flex"
+          >
             <ArrowLeft size={16} /> Back to All Courses
           </Link>
 
           {/* Hero Section */}
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-            <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }}>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+            >
               <div className="relative overflow-hidden glow-border md:rounded-2xl">
                 <Link
                   to="/courses"
@@ -76,22 +98,46 @@ const CourseDetails = () => {
                 >
                   <ArrowLeft size={18} />
                 </Link>
-                <img src={imageMap[course.image]} alt={`${course.title} - PADI scuba diving course`} className="w-full h-auto object-cover" width={800} height={544} />
+                <img
+                  src={imageMap[course.image]}
+                  alt={`${course.title} - PADI scuba diving course`}
+                  className="w-full h-auto object-cover"
+                  width={800}
+                  height={544}
+                />
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} className="px-4 md:px-0">
-              <span className="font-body text-primary font-semibold text-xs uppercase tracking-widest">{course.level}</span>
-              <h1 className="font-heading text-2xl md:text-5xl font-bold mt-2 mb-3">{course.title}</h1>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="px-4 md:px-0"
+            >
+              <span className="font-body text-primary font-semibold text-xs uppercase tracking-widest">
+                {course.level}
+              </span>
+              <h1 className="font-heading text-2xl md:text-5xl font-bold mt-2 mb-3">
+                {course.title}
+              </h1>
               <div className="flex items-center gap-4 mb-4 font-body text-foreground/60 text-sm">
-                <span className="flex items-center gap-1.5"><Clock size={14} /> {course.duration}</span>
-                <span className="flex items-center gap-1.5"><BarChart3 size={14} /> {course.level}</span>
+                <span className="flex items-center gap-1.5">
+                  <Clock size={14} /> {course.duration}
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <BarChart3 size={14} /> {course.level}
+                </span>
               </div>
-              <div className="font-heading text-2xl md:text-3xl font-bold gradient-text mb-1">Starting from {course.price}</div>
+              <div className="font-heading text-2xl md:text-3xl font-bold gradient-text mb-1">
+                Starting from {course.price}
+              </div>
               {course.pricingNote && (
-                <p className="font-body text-foreground/50 text-xs mb-4">{course.pricingNote}</p>
+                <p className="font-body text-foreground/50 text-xs mb-4">
+                  {course.pricingNote}
+                </p>
               )}
-              <p className="font-body text-foreground/70 text-sm md:text-lg leading-relaxed mb-6">{course.longDescription}</p>
+              <p className="font-body text-foreground/70 text-sm md:text-lg leading-relaxed mb-6">
+                {course.longDescription}
+              </p>
 
               <button
                 onClick={() => openBooking()}
@@ -104,7 +150,12 @@ const CourseDetails = () => {
 
           {/* Course Structure */}
           <div className="mt-16 px-4 md:mt-20 md:px-0">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-center gap-3 mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-3 mb-6"
+            >
               <div className="w-9 h-9 rounded-xl bg-primary/20 flex items-center justify-center">
                 <BookOpen className="text-primary" size={18} />
               </div>
@@ -129,13 +180,23 @@ const CourseDetails = () => {
                       {i + 1}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-heading text-lg md:text-xl font-bold mb-1.5">{step.title}</h3>
-                      <p className="font-body text-foreground/70 text-sm leading-relaxed">{step.description}</p>
+                      <h3 className="font-heading text-lg md:text-xl font-bold mb-1.5">
+                        {step.title}
+                      </h3>
+                      <p className="font-body text-foreground/70 text-sm leading-relaxed">
+                        {step.description}
+                      </p>
                       {step.details && (
                         <ul className="mt-3 grid sm:grid-cols-2 gap-1.5">
                           {step.details.map((detail) => (
-                            <li key={detail} className="flex items-center gap-2 font-body text-foreground/60 text-xs">
-                              <Check className="text-primary flex-shrink-0" size={12} />
+                            <li
+                              key={detail}
+                              className="flex items-center gap-2 font-body text-foreground/60 text-xs"
+                            >
+                              <Check
+                                className="text-primary flex-shrink-0"
+                                size={12}
+                              />
                               {detail}
                             </li>
                           ))}
@@ -147,18 +208,32 @@ const CourseDetails = () => {
               ))}
             </div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-4 glass-card rounded-xl p-4 flex items-start gap-3 border border-primary/20">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-4 glass-card rounded-xl p-4 flex items-start gap-3 border border-primary/20"
+            >
               <Info className="text-primary flex-shrink-0 mt-0.5" size={16} />
-              <p className="font-body text-foreground/60 text-xs leading-relaxed">{course.durationNote}</p>
+              <p className="font-body text-foreground/60 text-xs leading-relaxed">
+                {course.durationNote}
+              </p>
             </motion.div>
           </div>
 
           {/* Packages */}
           <div className="mt-16 px-4 md:mt-20 md:px-0">
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="font-heading text-2xl md:text-3xl font-bold mb-6 text-left">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-heading text-2xl md:text-3xl font-bold mb-6 text-left"
+            >
               Choose Your <span className="gradient-text">Package</span>
             </motion.h2>
-            <div className={`grid gap-4 md:gap-8 ${course.packages.length === 1 ? 'max-w-sm' : course.packages.length === 2 ? 'grid-cols-1 sm:grid-cols-2 max-w-3xl' : 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3'}`}>
+            <div
+              className={`grid gap-4 md:gap-8 ${course.packages.length === 1 ? "max-w-sm" : course.packages.length === 2 ? "grid-cols-1 sm:grid-cols-2 max-w-3xl" : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3"}`}
+            >
               {course.packages.map((pkg, i) => (
                 <motion.div
                   key={pkg.name}
@@ -166,18 +241,23 @@ const CourseDetails = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className={`glass-card rounded-xl p-5 md:p-8 relative flex flex-col ${pkg.tag ? 'ring-2 ring-primary shadow-[0_0_30px_hsl(var(--primary)/0.2)]' : ''}`}
+                  className={`glass-card rounded-xl p-5 md:p-8 relative flex flex-col ${pkg.tag ? "ring-2 ring-primary shadow-[0_0_30px_hsl(var(--primary)/0.2)]" : ""}`}
                 >
                   {pkg.tag && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-primary text-primary-foreground font-body text-[10px] font-semibold whitespace-nowrap">
                       {pkg.tag}
                     </div>
                   )}
-                  <h3 className="font-heading text-lg md:text-xl font-bold mb-1">{pkg.name}</h3>
-                  <div className="font-heading text-2xl md:text-3xl font-bold gradient-text mb-4">{pkg.price}</div>
+                  <h3 className="font-heading text-lg md:text-xl font-bold mb-1">
+                    {pkg.name}
+                  </h3>
+                  <div className="font-heading text-2xl md:text-3xl font-bold gradient-text mb-4">
+                    {pkg.price}
+                  </div>
                   <ul className="space-y-2 flex-1">
                     {pkg.features.map((feature, featureIndex) => {
-                      const isSectionTitle = feature === "Includes" || feature === "Excludes";
+                      const isSectionTitle =
+                        feature === "Includes" || feature === "Excludes";
 
                       if (isSectionTitle) {
                         return (
@@ -193,7 +273,10 @@ const CourseDetails = () => {
                       }
 
                       return (
-                        <li key={`${pkg.name}-${feature}`} className="flex items-start gap-2 font-body text-foreground/70 text-xs md:text-sm">
+                        <li
+                          key={`${pkg.name}-${feature}`}
+                          className="flex items-start gap-2 font-body text-foreground/70 text-xs md:text-sm"
+                        >
                           <div className="w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                             <Check className="text-primary" size={10} />
                           </div>
@@ -206,8 +289,8 @@ const CourseDetails = () => {
                     onClick={() => openBooking(pkg.name)}
                     className={`mt-4 inline-flex justify-center px-5 py-2.5 rounded-full font-body font-semibold text-sm transition-all duration-500 ${
                       pkg.tag
-                        ? 'bg-primary text-primary-foreground hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)]'
-                        : 'border border-primary/40 text-foreground hover:bg-primary/10'
+                        ? "bg-primary text-primary-foreground hover:shadow-[0_0_30px_hsl(var(--primary)/0.5)]"
+                        : "border border-primary/40 text-foreground hover:bg-primary/10"
                     }`}
                   >
                     Choose {pkg.name}
@@ -216,22 +299,34 @@ const CourseDetails = () => {
               ))}
             </div>
             {course.pricingNote && (
-              <p className="text-center font-body text-foreground/40 text-xs mt-4">* {course.pricingNote}</p>
+              <p className="text-center font-body text-foreground/40 text-xs mt-4">
+                * {course.pricingNote}
+              </p>
             )}
           </div>
 
           {/* Prerequisites */}
           <div className="mt-16 px-4 md:mt-20 md:px-0">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="glass-card p-5 md:p-8 rounded-xl">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="glass-card p-5 md:p-8 rounded-xl"
+            >
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-7 h-7 rounded-lg bg-accent/20 flex items-center justify-center">
                   <AlertCircle className="text-accent" size={14} />
                 </div>
-                <h2 className="font-heading text-lg md:text-2xl font-bold">Prerequisites</h2>
+                <h2 className="font-heading text-lg md:text-2xl font-bold">
+                  Prerequisites
+                </h2>
               </div>
               <ul className="space-y-2">
                 {course.prerequisites.map((item) => (
-                  <li key={item} className="flex items-start gap-2 font-body text-foreground/70 text-xs md:text-sm">
+                  <li
+                    key={item}
+                    className="flex items-start gap-2 font-body text-foreground/70 text-xs md:text-sm"
+                  >
                     <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check className="text-accent" size={12} />
                     </div>
@@ -261,6 +356,19 @@ const CourseDetails = () => {
                           Download
                         </a>
                       </span>
+                    ) : item === liabilityStatementText ? (
+                      <span>
+                        {item}-
+                        <a
+                          href={physicianClearanceHref}
+                          download
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-primary underline underline-offset-2"
+                        >
+                          Download
+                        </a>
+                      </span>
                     ) : (
                       item
                     )}
@@ -272,16 +380,33 @@ const CourseDetails = () => {
 
           {/* Explore More */}
           <div className="mt-16 px-4 md:mt-24 md:px-0">
-            <h2 className="font-heading text-2xl md:text-3xl font-bold mb-6">Explore More <span className="gradient-text">Courses</span></h2>
+            <h2 className="font-heading text-2xl md:text-3xl font-bold mb-6">
+              Explore More <span className="gradient-text">Courses</span>
+            </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8">
               {otherCourses.map((c) => (
-                <Link key={c.id} to={`/courses/${c.id}`} className="glass-card rounded-xl overflow-hidden group hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)] transition-all duration-500">
+                <Link
+                  key={c.id}
+                  to={`/courses/${c.id}`}
+                  className="glass-card rounded-xl overflow-hidden group hover:shadow-[0_0_30px_hsl(var(--primary)/0.15)] transition-all duration-500"
+                >
                   <div className="h-24 md:h-40 overflow-hidden">
-                    <img src={imageMap[c.image]} alt={c.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" width={800} height={544} />
+                    <img
+                      src={imageMap[c.image]}
+                      alt={c.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
+                      width={800}
+                      height={544}
+                    />
                   </div>
                   <div className="p-3 md:p-5">
-                    <h3 className="font-heading text-xs md:text-base font-semibold group-hover:text-primary transition-colors line-clamp-2">{c.title}</h3>
-                    <p className="font-body text-foreground/50 text-[10px] md:text-sm mt-1 hidden sm:block">{c.duration} · {c.level}</p>
+                    <h3 className="font-heading text-xs md:text-base font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                      {c.title}
+                    </h3>
+                    <p className="font-body text-foreground/50 text-[10px] md:text-sm mt-1 hidden sm:block">
+                      {c.duration} · {c.level}
+                    </p>
                     <span className="inline-flex items-center gap-1 text-primary font-body text-[10px] md:text-sm font-semibold mt-2">
                       View <ArrowRight size={12} />
                     </span>
@@ -290,6 +415,30 @@ const CourseDetails = () => {
               ))}
             </div>
           </div>
+
+          <motion.section
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            id="permit-note"
+            className="my-8 rounded-2xl border border-accent/25 bg-accent/10 p-5 md:p-6"
+          >
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-accent/20">
+                <AlertTriangle className="text-accent" size={18} />
+              </div>
+              <div>
+                <h2 className="font-heading text-xl md:text-2xl font-bold mb-2">
+                  Mandatory Permit Note
+                </h2>
+                <p className="font-body text-sm md:text-base text-foreground/75 leading-relaxed">
+                  PCC (Police Clearance Certificate) is mandatory for
+                  Lakshadweep entry permit application. It must be taken online
+                  from your respective state police official website, and permit
+                  processing takes 7-10 working days.
+                </p>
+              </div>
+            </div>
+          </motion.section>
         </div>
       </main>
       <Footer />

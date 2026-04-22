@@ -30,68 +30,6 @@ export interface Course {
 
 export const courses: Course[] = [
   {
-    id: "discover-scuba-diving",
-    title: "PADI Discover Scuba Diving",
-    duration: "Half Day",
-    level: "Experience",
-    price: "₹6,000",
-    description: "A fun, introductory experience that lets you try scuba diving under the direct supervision of a PADI Professional. No certification needed.",
-    longDescription: "This program is a fun, introductory experience that lets you try scuba diving under the direct supervision of a PADI Professional. It's perfect for those who want to experience the thrill of diving without committing to a full certification course. While this is not a certification, it gives you a glimpse into the underwater world and is a great way to determine if you'd like to pursue further dive training.",
-    includes: [
-      "Basic dive theory briefing",
-      "Equipment usage training",
-      "Confined water dive practice",
-      "Optional open water dive (up to 12m)",
-      "All equipment provided",
-      "Expert PADI instructor guidance",
-      "Underwater photos & videos",
-    ],
-    prerequisites: [
-      "Minimum age: 10 years old",
-      "Basic comfort in the water (no formal swim test)",
-      "PADI Medical Statement must be completed",
-      "Physician clearance if any medical conditions",
-      "PADI Liability Release Form must be signed",
-    ],
-    courseStructure: [
-      {
-        title: "Briefing",
-        description: "Learn basic dive theory from a PADI Instructor, including safety guidelines, equipment usage, equalizing pressure, and basic underwater communication.",
-        details: ["Can be completed online via PADI eLearning system", "Review materials and gain basic understanding before dive day"],
-      },
-      {
-        title: "Confined Water Dive",
-        description: "Practice key skills in a pool or shallow water environment under close supervision.",
-        details: ["Breathing underwater", "Regulator clearing", "Mask clearing", "Basic buoyancy control"],
-      },
-      {
-        title: "Optional Open Water Dive",
-        description: "After successfully completing the confined water dive, take part in a supervised open water dive up to 12 meters/40 feet to experience real-world scuba diving conditions.",
-      },
-    ],
-    durationNote: "The program typically takes half a day, including the briefing and confined water dive, with the option to add an open water dive. PADI eLearning is available for the theory portion.",
-    pricingNote: "Prices mentioned are without 18% GST.",
-    image: "course-scuba-diver",
-    packages: [
-      {
-        name: "Basic Explorer",
-        price: "₹6,000",
-        features: ["1 shore dive of 45 minutes", "Underwater videos & photos", "All equipment included", "PADI instructor supervision"],
-      },
-      {
-        name: "Premium Adventurer",
-        price: "₹9,000",
-        tag: "Popular",
-        features: ["1 shore dive of 45 minutes", "1 boat dive of 45 minutes", "Underwater videos & photos", "All equipment included", "PADI instructor supervision"],
-      },
-      {
-        name: "Elite Diver",
-        price: "₹12,000",
-        features: ["2 boat dives of 45 minutes each", "Underwater videos & photos", "All equipment included", "PADI instructor supervision", "Premium boat experience"],
-      },
-    ],
-  },
-  {
     id: "padi-scuba-diver",
     title: "PADI Scuba Diver",
     duration: "3 Days",
@@ -111,7 +49,7 @@ export const courses: Course[] = [
       "Minimum age: 10 years (Junior Scuba Diver), 15 years (full certification)",
       "Basic swimming ability required",
       "PADI Medical Statement must be completed",
-      "Physician clearance if any medical conditions",
+      // "Physician clearance if any medical conditions",
       "PADI Liability Release Form must be signed",
     ],
     courseStructure: [
@@ -169,7 +107,7 @@ export const courses: Course[] = [
     ],
     prerequisites: [
       "Minimum age: 10 years (Junior OWD), 15 years (full certification)",
-      "Swim 200m (or 300m with mask, fins & snorkel)",
+      "Swim 200m or 300m with mask, fins & snorkel",
       "Tread water for 10 minutes",
       "PADI Medical Statement must be completed",
       "PADI Liability Release Form must be signed",
@@ -255,12 +193,14 @@ export const courses: Course[] = [
     description: "Enhance your diving skills and confidence with five adventure dives including mandatory Deep Diving and Underwater Navigation.",
     longDescription: "The PADI Advanced Open Water Diver Course enhances your diving skills and confidence by introducing you to new types of diving. This course focuses on practical experience and includes five adventure dives, two of which are mandatory: Deep Diving and Underwater Navigation.",
     includes: [
-      "5 adventure dives",
-      "Deep dive (mandatory)",
-      "Underwater navigation dive (mandatory)",
-      "3 elective adventure dives",
-      "All equipment rental",
-      "PADI Advanced OWD certification card",
+      "Boat dive (elective)",
+      "Peak performance buoyancy (elective)",
+      "Drift dive  (elective)",
+      "Underwater Naturalist (elective)",
+      "⁠Underwater Photography (elective)",
+      "Dive against Debris (elective)",
+      "Search and Recovery (elective)",
+      "Shark conservation (AWARE) (elective)",
     ],
     prerequisites: [
       "Minimum age: 12 years (Junior AOWD), 15 years (full certification)",
@@ -275,8 +215,8 @@ export const courses: Course[] = [
       },
       {
         title: "Adventure Dives",
-        description: "Complete five dives including the mandatory Deep Dive and Underwater Navigation Dive, plus three elective dives.",
-        details: ["Deep Dive (mandatory)", "Navigation Dive (mandatory)", "Night Diving (elective)", "Wreck Diving (elective)", "Other specialties available"],
+        description: "Complete five dives including the mandatory Deep Dive (depth as 30 meters) and Underwater Navigation Dive, plus three elective dives.",
+        details: ["Deep Dive (depth as 30 meters) (mandatory)", "Navigation Dive (mandatory)", "Night Diving (elective)", "Wreck Diving (elective)", "Other specialties available"],
       },
     ],
     durationNote: "Typically 2 days, with PADI eLearning facilitating quicker theory completion.",

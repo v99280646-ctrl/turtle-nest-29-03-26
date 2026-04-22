@@ -12,7 +12,7 @@ const imageMap: Record<string, string> = {
   "course-efr": "/images/emergency_responder.png",
   "course-rescue": "/images/5.jpg",
   "course-divemaster": "/images/divemaster.jpeg",
-  "course-zero-to-hero": "/images/zero-to-hero.jpeg",
+  "course-zero-to-hero": "/images/zero-to-hero.jpg",
 };
 
 const CoursesSection = () => {

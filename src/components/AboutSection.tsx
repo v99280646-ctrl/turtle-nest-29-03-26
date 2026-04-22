@@ -16,15 +16,17 @@ const AboutSection = () => (
             <span className="gradient-text">Turtle Nest Scuba</span>
           </h2>
           <p className="font-body text-foreground/70 text-lg leading-relaxed mb-6">
-            Turtle Nest Scuba is a trusted PADI-certified diving center offering world-class
-            scuba diving experiences for beginners and professionals. Whether you're trying
-            scuba diving for the first time or advancing your certification, our expert
-            instructors ensure a safe, exciting, and unforgettable journey beneath the waves.
+            Turtle Nest Scuba is a peaceful, beachside dive centre in
+            Lakshadweep, set away from crowded residential areas to offer a calm
+            and immersive ocean experience. Along with diving, we provide
+            comfortable resort-style stays, allowing guests to fully unwind by
+            the sea.
           </p>
           <p className="font-body text-foreground/60 leading-relaxed">
-            With years of experience and a passion for marine conservation, we are dedicated
-            to showing you the beauty of the underwater world while preserving it for future
-            generations. Every dive with us is more than an adventure — it's a transformation.
+            Founded by Mr. Kamarudheen, one of Lakshadweep’s most experienced
+            instructors with over 30 years of diving experience, the centre
+            benefits from his deep local knowledge and access to lesser-explored
+            dive sites.
           </p>
         </motion.div>
         <motion.div
@@ -45,7 +47,9 @@ const AboutSection = () => (
             />
           </div>
           <div className="absolute -bottom-6 -left-6 glass-card p-4 rounded-xl">
-            <p className="font-heading text-3xl font-bold gradient-text">500+</p>
+            <p className="font-heading text-3xl font-bold gradient-text">
+              500+
+            </p>
             <p className="font-body text-sm text-foreground/70">Happy Divers</p>
           </div>
         </motion.div>
