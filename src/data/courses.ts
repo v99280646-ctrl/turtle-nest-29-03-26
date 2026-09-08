@@ -106,7 +106,7 @@ export const courses: Course[] = [
     title: "PADI Open Water Diver",
     duration: "4 Days",
     level: "Beginner",
-    price: "INR 30,000",
+    price: "INR 31,000",
     description:
       "The world's most popular scuba diving certification. Dive independently with a buddy to a maximum depth of 18 metres anywhere in the world.",
     longDescription:
